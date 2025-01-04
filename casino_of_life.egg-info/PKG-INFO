@@ -1,0 +1,23 @@
+Metadata-Version: 2.1
+Name: casino_of_life
+Version: 0.1
+Summary: A package for training AI agents to play retro games using natural language
+Home-page: https://github.com/yourusername/casino-of-life
+Author: Cimai
+Author-email: info@cimai.biz
+Classifier: Programming Language :: Python :: 3
+Classifier: License :: OSI Approved :: MIT License
+Classifier: Operating System :: OS Independent
+Requires-Python: >=3.8
+Description-Content-Type: text/markdown
+Requires-Dist: fastapi
+Requires-Dist: uvicorn
+Requires-Dist: g4f
+Requires-Dist: stable-retro
+Requires-Dist: numpy
+Requires-Dist: torch
+Requires-Dist: stable-baselines3
+Requires-Dist: python-dotenv
+Requires-Dist: websockets
+Requires-Dist: aiohttp
+Requires-Dist: pydantic

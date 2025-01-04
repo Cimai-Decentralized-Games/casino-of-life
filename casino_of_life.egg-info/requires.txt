@@ -1,0 +1,11 @@
+fastapi
+uvicorn
+g4f
+stable-retro
+numpy
+torch
+stable-baselines3
+python-dotenv
+websockets
+aiohttp
+pydantic

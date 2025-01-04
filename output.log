@@ -1,0 +1,5 @@
+nohup: ignoring input
+Traceback (most recent call last):
+  File "/var/www/cimai/casino-of-life/main.py", line 6, in <module>
+    from fastapi import FastAPI, WebSocket, HTTPException, Request
+ModuleNotFoundError: No module named 'fastapi'
