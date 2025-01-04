@@ -18,6 +18,8 @@ casino_of_life/data/contrib/__init__.py
 casino_of_life/data/experimental/__init__.py
 casino_of_life/data/stable/__init__.py
 casino_of_life/src/__init__.py
+casino_of_life/src/gpu_bridge.py
+casino_of_life/src/vast_config.py
 casino_of_life/src/client_bridge/__init__.py
 casino_of_life/src/client_bridge/action_mappers.py
 casino_of_life/src/client_bridge/agent_factory.py

@@ -13,7 +13,7 @@ SCENARIOS_DIR = DATA_DIR
 STATES_DIR = DATA_DIR
 
 # API Configuration
-CHAT_WS_URL = os.getenv("CHAT_WS_URL", "http://localhost:8000")
+CHAT_WS_URL = os.getenv("CHAT_WS_URL", "http://70.69.205.56:57258")
 CHAT_API_KEY = os.getenv("CHAT_API_KEY", None)
 
 # Default game settings

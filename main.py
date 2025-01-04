@@ -6,7 +6,6 @@ from typing import Dict, Any, Optional, List
 from fastapi import FastAPI, WebSocket, HTTPException, Request
 from fastapi.middleware.cors import CORSMiddleware
 from fastapi.responses import JSONResponse, StreamingResponse
-from gpu_bridge import VastTrainingBridge
 from g4f.client import Client
 from g4f.Provider import OpenaiChat
 from casino_of_life.src.trainers.rl_algorithms import rl_algorithm, PolicyType
@@ -28,8 +27,8 @@ from casino_of_life.src.client_bridge.retro_api import RetroAPI
 from casino_of_life.agents.custom_agent import BaseAgent
 import sys
 from casino_of_life.src.game_environments.retro_env_loader import RetroEnv
-from casino_of_life.gpu_bridge import VastTrainingBridge
-from casino_of_life.vast_config import VAST_INSTANCE
+from casino_of_life.src.gpu_bridge import VastTrainingBridge
+from casino_of_life.src.vast_config import VAST_INSTANCE
 
 # Force debug logging to console
 logging.basicConfig(
@@ -92,7 +91,7 @@ dynamic_agent = DynamicAgent(
 agent_factory = None
 chat_client = None
 
-# Initialize the GPU bridge with your other global variables
+# Initialize Vast bridge with config directly
 vast_bridge = VastTrainingBridge()
 
 def create_system_message(character):
@@ -235,8 +234,10 @@ async def train(request: Request):
     
     try:
         data = await request.json()
+        session_id = request.headers.get('X-Session-ID')
         logger.debug("=== TRAIN ENDPOINT ===")
         logger.debug(f"1. Raw data received: {data}")
+        logger.debug(f"Session ID: {session_id}")
         
         if not agent_factory:
             logger.debug("Initializing agent factory...")
@@ -254,18 +255,18 @@ async def train(request: Request):
             result = await agent_factory.create_agent(
                 request_type=data.get("type"),
                 message=message,
-                game=DEFAULT_GAME,
-                state=DEFAULT_STATE,
+                game=data.get("save_state", DEFAULT_GAME),
+                state=data.get("state", DEFAULT_STATE),
                 scenario=None,
                 players=1,
                 action=None
             )
             
-            # Start training on Vast.ai GPU
+            # Start training on Vast GPU
             training_result = await vast_bridge.start_training({
                 "training_params": result.get("training_params", {}),
-                "game": DEFAULT_GAME,
-                "state": DEFAULT_STATE,
+                "game": data.get("save_state", DEFAULT_GAME),
+                "state": data.get("state", DEFAULT_STATE),
                 "message": message
             })
             
@@ -305,7 +306,7 @@ async def get_training_status(request: Request):
         vast_instance_id = session.get("vast_instance")
         
         if vast_instance_id:
-            # Get status from Vast.ai GPU
+            # Get status from Vast GPU
             status = vast_bridge.get_status(vast_instance_id)
             
             # Update session status
@@ -350,6 +351,6 @@ async def websocket_endpoint(websocket: WebSocket):
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=6000)
+    uvicorn.run(app, host="0.0.0.0", port=6789)
 
 print("Loading RetroEnv from:", RetroEnv.__file__)

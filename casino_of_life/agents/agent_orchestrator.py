@@ -1,10 +1,10 @@
 # casino-of-life-retro/src/agents/agent_orchestrator.py
 import logging
 import asyncio
-from client_bridge.parser import parse_user_input
-from client_bridge.reward_evaluators import RewardEvaluatorManager
-from client_bridge.action_mappers import ActionMapper
-from client_bridge.chat_client import get_agent_bridge
+from casino_of_life.src.client_bridge.parser import parse_user_input
+from casino_of_life.src.client_bridge.reward_evaluators import RewardEvaluatorManager
+from casino_of_life.src.client_bridge.action_mappers import ActionMapper
+from casino_of_life.src.client_bridge.chat_client import get_agent_bridge
 from typing import Optional, List, Dict, Any
 
 class AgentOrchestrator:
