@@ -1,0 +1,261 @@
+# 🎮 Casino of Life
+
+A revolutionary framework for training AI agents in retro fighting games using natural language interactions. Casino of Life combines reinforcement learning with natural language processing to create an intuitive interface for training game-playing AI agents.
+
+## 🌟 Features
+
+### Natural Language Training Interface
+- Train AI agents using natural conversations
+- Explain strategies in plain English
+- Get real-time feedback on training progress
+- Interactive chat with CaballoLoko, your AI training assistant
+
+### Supported Games
+- Mortal Kombat II (Genesis)
+- Street Fighter II (Coming Soon)
+- More fighting games to be added
+
+### Advanced Training Capabilities
+- Multiple training strategies (Aggressive, Defensive, Balanced)
+- Various learning policies (PPO, A2C, DQN, MLP)
+- Custom reward functions
+- Save and load training states
+- Real-time training visualization
+
+## 🚀 Quick Start
+
+### Installation
+```bash
+pip install casino-of-life
+```
+
+### Basic Usage
+```python
+from casino_of_life.agents import DynamicAgent, CaballoLoko
+from casino_of_life.environment import RetroEnv
+
+#Initialize CaballoLoko for training guidance
+caballo_loko = CaballoLoko()
+response = caballo.chat("Train Liu Kang to be aggressive with fireballs")
+
+#Create environment and agent
+
+env = RetroEnv(
+game='MortalKombatII-Genesis',
+state='tournament',
+players=2
+)
+agent = DynamicAgent(
+env=env,
+policy='PPO',
+learning_rate=0.0003
+)
+```
+
+# Start training with natural language guidance
+```python
+agent.train(
+    timesteps=100000
+)
+```
+## 🛠 Advanced Features
+
+### Flexible Reward System
+```python
+from casino_of_life.reward_evaluators import (
+BasicRewardEvaluator,
+StageCompleteRewardEvaluator,
+MultiObjectiveRewardEvaluator
+)
+```
+###Create custom reward evaluator
+```python
+reward_system = MultiObjectiveRewardEvaluator([
+BasicRewardEvaluator(health_reward=1.0, damage_penalty=-1.0),
+StageCompleteRewardEvaluator(stage_complete_reward=100.0)
+])
+```
+
+### Environment Configuration
+```python
+from casino_of_life.environment import RetroEnv
+env = RetroEnv(
+game='MortalKombatII-Genesis',
+state='tournament',
+players=2
+)
+```
+
+### Advanced Training Control
+```python
+from casino_of_life.agents import DynamicAgent
+from casino_of_life.client_bridge import RewardEvaluatorManager
+
+# Initialize reward manager
+reward_manager = RewardEvaluatorManager()
+reward_manager.register_evaluator("tournament", reward_system)
+
+# Create dynamic agent with custom rewards
+agent = DynamicAgent(
+    env=env,
+    reward_evaluator=reward_manager.get_evaluator("tournament"),
+    frame_stack=4,
+    learning_rate=0.0003
+)
+```
+
+## 🎯 Use Cases
+
+### Game Developers
+- Test game balance
+- Create sophisticated AI opponents
+- Generate training data for game testing
+
+### AI Researchers
+- Experiment with reinforcement learning in complex environments
+- Study human-AI interaction through natural language
+- Develop and test new training strategies
+
+### Gaming Community
+- Create custom AI training scenarios
+- Share and compare training results
+- Contribute to the evolution of game AI and the Casino of Life framework. 
+
+## 🛠 Advanced Features
+
+### Flexible Reward System
+```python
+from casino_of_life.reward_evaluators import (
+    BasicRewardEvaluator,
+    StageCompleteRewardEvaluator,
+    MultiObjectiveRewardEvaluator
+)
+
+# Create custom reward evaluator
+reward_system = MultiObjectiveRewardEvaluator([
+    BasicRewardEvaluator(health_reward=1.0, damage_penalty=-1.0),
+    StageCompleteRewardEvaluator(stage_complete_reward=100.0)
+])
+```
+
+### Environment Configuration
+```python
+from casino_of_life.environment import RetroEnv
+
+# Create custom environment with frame stacking
+env = RetroEnv(
+    game='MortalKombatII-Genesis',
+    state='tournament',
+    players=2,  # Support for multiplayer
+)
+```
+
+### Advanced Training Control
+```python
+from casino_of_life.agents import DynamicAgent
+from casino_of_life.client_bridge import RewardEvaluatorManager
+
+# Initialize reward manager
+reward_manager = RewardEvaluatorManager()
+reward_manager.register_evaluator("tournament", reward_system)
+
+# Create dynamic agent with custom rewards
+agent = DynamicAgent(
+    env=env,
+    reward_evaluator=reward_manager.get_evaluator("tournament"),
+    frame_stack=4,
+    learning_rate=0.0003
+)
+```
+
+## 🔧 Technical Details
+
+### Environment Features
+- Stochastic frame skipping for realistic gameplay
+- Configurable observation processing (84x84 grayscale)
+- 4-frame stacking for temporal information
+- Multi-player support (up to 2 players)
+- Automatic garbage collection for memory management
+
+### Reward System
+- Modular reward evaluators
+- Health-based reward calculation
+- Stage completion bonuses
+- Multi-objective reward combination
+- Custom reward scaling
+- Real-time reward adjustment
+
+### Training Pipeline
+- Integration with Stable-Baselines3
+- Support for multiple RL algorithms
+- Customizable training parameters
+- Progress tracking and checkpointing
+- Memory-efficient design
+
+## 📊 Web Interface
+
+### Training Dashboard
+- Real-time training metrics
+- Agent management
+- Model versioning
+- Interactive chat
+- Training configuration
+
+### API Integration
+```python
+from casino_of_life.web import TrainingServer
+
+# Start training server
+server = TrainingServer()
+server.start()
+```
+
+### WebSocket connection for real-time updates
+```python
+@server.on_message
+async def handle_training_request(message):
+    training_id = await server.start_training(message)
+    return {"training_id": training_id}
+```
+
+## 🤝 Contributing
+
+We welcome contributions! See our [Contributing Guide](CONTRIBUTING.md) for details.
+
+### Development Setup
+```bash
+git clone https://github.com/Cimai-Decentralized-Games/casino-of-life.git
+cd casino-of-life
+pip install -r requirements.txt
+```
+
+## 📚 Documentation
+
+Full documentation available at [https://docs.cimai.biz](https://docs.cimai.biz)
+- [API Reference](https://docs.cimai.biz/api)
+- [Training Guides](https://docs.cimai.biz/guides)
+- [Example Projects](https://docs.cimai.biz/examples)
+- [Deployment Guide](https://docs.cimai.biz/deployment)
+
+## 🔗 Links
+- [Website](https://cimai.biz)
+- [Documentation](https://docs.cimai.biz)
+- [Discord Community](https://discord.gg/cimai)
+- [Blog](https://blog.cimai.biz)
+
+## 📄 License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## 🙏 Acknowledgments
+
+- [G4F](https://github.com/xtekky/gpt4free) for GPT models and other Providers
+- [Stable-Retro](https://github.com/Farama-Foundation/stable-retro) for game emulation
+- [Stable-Baselines3](https://github.com/DLR-RM/stable-baselines3) for RL implementations
+- The fighting game community for inspiration and support
+
+
+
+---
+
+Made with ❤️ by Cimai Decentralized Games
