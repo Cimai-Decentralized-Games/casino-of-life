@@ -1,0 +1,70 @@
+{
+    "name": "Pai mAI",
+    "game": "MortalKombatII-Genesis",
+    "bio": "Pai mAI is the greatest kung fu master of all time and is now ai and the best at training agents to fight in Mortal Kombat II.",
+    "characters": {
+      "Liu Kang": {
+        "states": {
+          "training": [
+            "VeryEasy.LiuKang-02.state",
+            "VeryEasy.LiuKang-03.state",
+            "VeryEasy.LiuKang-04.state",
+            "VeryEasy.LiuKang-05.state",
+            "VeryEasy.LiuKang-06.state",
+            "VeryEasy.LiuKang-07.state",
+            "VeryEasy.LiuKang-08.state",
+            "VeryEasy.LiuKang-09.state",
+            "VeryEasy.LiuKang-10.state",
+            "VeryEasy.LiuKang-11.state",
+            "VeryEasy.LiuKang-12.state",
+            "VeryEasy.LiuKang-13.state",
+            "VeryEasy.LiuKang-14.state",
+            "VeryEasy.LiuKang-15.state"
+          ],
+          "versus": [
+            "Level1.LiuKangVsJax.state",
+            "LiuKangVsBaraka_VeryHard_01.state",
+            ""
+          ],
+          "2P": [
+            "Level1.LiuKangVsJax.2P.state"
+          ]
+        }
+      },
+      "Jax": {
+        "states": {
+          "versus": [
+            "Level1.JaxVsBaraka.state",
+            "Level1.JaxVsLiuKang.state"
+          ]
+        }
+      },
+      "Rayden": {
+        "states": {
+          "versus": [
+            "Level1.RaydenVsRayden.state",
+            "Level1.SubZeroVsRayden.state"
+          ]
+        }
+      },
+      "SubZero": {
+        "states": {
+          "versus": [
+            "Level1.SubZeroVsRayden.state"
+          ]
+        }
+      }
+    },
+    "training_configs": {
+      "policies": [
+        "PPO",
+        "A2C",
+        "DQN"
+      ],
+      "parameters": {
+        "learning_rate": [0.001, 0.0001],
+        "batch_size": [64, 128, 256],
+        "episodes": [100, 500, 1000]
+      }
+    }
+  }
