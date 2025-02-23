@@ -2,19 +2,10 @@ include README.md
 include LICENSE
 include requirements.txt
 
-# Include all package data
+# Include only essential package data
 recursive-include casino_of_life/data *
 recursive-include casino_of_life/scenarios *
 recursive-include casino_of_life/game_wrappers *
-
-# Include documentation
-recursive-include docs *
-
-# Include examples
-recursive-include examples *
-
-# Include test files
-recursive-include tests *
 
 # Exclude unnecessary files
 global-exclude *.pyc
@@ -24,3 +15,4 @@ global-exclude .git*
 global-exclude .DS_Store
 global-exclude *.swp
 global-exclude *.swo
+global-exclude __pycache__/*

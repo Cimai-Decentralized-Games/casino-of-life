@@ -4,7 +4,7 @@ import numpy as np
 import gc
 from pathlib import Path
 from typing import Optional
-from casino_of_life.utils.config import DATA_DIR  # Updated import path
+from casino_of_life.utils.config import DATA_DIR
 
 # Match the C++ constants
 N_BUTTONS = 16
@@ -73,8 +73,8 @@ class RetroEnv(gym.Env):
         if True:  # use_frame_skip
             self.env = StochasticFrameSkip(self.env, n=4, stickprob=0.25)
         self.env = gym.wrappers.ResizeObservation(self.env, (84, 84))
-        self.env = gym.wrappers.GrayScaleObservation(self.env)
-        self.env = gym.wrappers.FrameStack(self.env, 4)
+        self.env = gym.wrappers.GrayscaleObservation(self.env)
+        self.env = gym.wrappers.FrameStackObservation(self.env, 4)  # Fixed: FrameStackObservation instead of FrameStack
         
         # Get spaces from wrapped env
         self.observation_space = self.env.observation_space
@@ -93,3 +93,7 @@ class RetroEnv(gym.Env):
         if hasattr(self, 'env'):
             self.env.close()
         gc.collect()
+
+    def get_game_controls(self):
+        """Get the game's control scheme"""
+        return self.env.buttons if hasattr(self.env, 'buttons') else []

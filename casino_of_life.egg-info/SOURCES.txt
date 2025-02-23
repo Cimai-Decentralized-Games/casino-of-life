@@ -6255,8 +6255,3 @@ casino_of_life/game_wrappers/mk2/mk2_rf.py
 casino_of_life/game_wrappers/mk2/mk2_wrapper.py
 casino_of_life/utils/__init__.py
 casino_of_life/utils/config.py
-docs/api/agents.md
-docs/api/client_bridge.md
-docs/api/environment.md
-docs/api/reward_system.md
-tests/__init__.py

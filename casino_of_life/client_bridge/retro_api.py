@@ -1,6 +1,6 @@
 # /casino-of-life/casino-of-life/src/client_bridge/retro_api.py
 import gymnasium as gym
-from src.game_environments.retro_env_loader import RetroEnv
+from casino_of_life.game_environments.retro_env_loader import RetroEnv
 
 class RetroAPI:
     def __init__(self, game=None, state=None, scenario=None, players=1):

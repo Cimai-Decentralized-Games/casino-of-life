@@ -26,7 +26,7 @@ from casino_of_life.client_bridge.reward_evaluators import (
     StageCompleteRewardEvaluator,
     MultiObjectiveRewardEvaluator
 )
-from casino_of_life.game_environments.game_intergrations import GameIntegrations
+# from casino_of_life.game_environments.game_intergrations import GameIntegrations
 from casino_of_life.client_bridge.retro_api import RetroAPI
 
 # Configure logging
@@ -55,7 +55,7 @@ sessions: Dict[str, Dict[str, Any]] = {}
 training_sessions: Dict[str, Any] = {}
 
 # Initialize components
-game_integrations = GameIntegrations()
+# game_integrations = GameIntegrations()
 reward_manager = RewardEvaluatorManager()
 
 # Initialize RetroAPI

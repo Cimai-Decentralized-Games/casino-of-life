@@ -3,7 +3,7 @@ import json
 import requests
 import time
 import logging
-from casino_of_life.src.vast_config import VAST_INSTANCE
+from .vast_config import VAST_INSTANCE
 import socket
 from contextlib import contextmanager
 
